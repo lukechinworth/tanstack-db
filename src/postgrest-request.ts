@@ -59,8 +59,8 @@ export async function postgrestRequest(
   })
 
   const { data, error } = await builder
-  if (error) {
-    throw error
-  }
+  
+  if (error) throw error instanceof Error ? error : new PostgrestError(error);
+  
   return data
 }
